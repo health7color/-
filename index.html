@@ -20,398 +20,141 @@
       --radius: 16px;
     }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Prompt', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      margin: 0;
-      padding: 24px 16px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .app-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .app-header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      color: #1e3a8a;
-      margin: 0 0 6px 0;
-    }
-    .app-header p {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border-color);
-      margin-bottom: 20px;
-    }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .btn {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-    }
-    .btn:hover {
-      background: var(--primary-hover);
-      transform: translateY(-1px);
-    }
-    .btn:active {
-      transform: scale(0.98);
-    }
+    * { box-sizing: border-box; font-family: 'Prompt', sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 24px 16px; min-height: 100vh; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 650px; margin: 0 auto; }
+    .app-header { text-align: center; margin-bottom: 24px; }
+    .app-header h1 { font-size: 24px; font-weight: 700; color: #1e3a8a; margin: 0 0 6px 0; }
+    .app-header p { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .card { background: var(--card-bg); border-radius: var(--radius); padding: 24px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); margin-bottom: 20px; }
+    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .btn { background: var(--primary-color); color: white; border: none; padding: 14px 20px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+    .btn:hover { background: var(--primary-hover); }
     .btn-sec { background: #e2e8f0; color: #334155; }
-    .btn-sec:hover { background: #cbd5e1; }
-    .btn-info { background: #0d9488; color: white; }
-    .btn-info:hover { background: #0f766e; }
+    .btn-speaker { background: #7c3aed; color: white; font-size: 18px; padding: 16px; margin-top: 12px; }
+    .form-stack { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label { font-size: 15px; font-weight: 600; color: #1e293b; }
+    .field-group input { padding: 12px 14px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 16px; }
     
-    .btn-speaker {
-      background: #7c3aed;
-      color: white;
-      font-size: 18px;
-      padding: 16px;
-      margin-top: 12px;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    }
-    .btn-speaker:hover {
-      background: #6d28d9;
-    }
-
-    .form-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .field-group label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #1e293b;
-    }
-    .field-group label .line-num {
-      background: #e0f2fe;
-      color: #0369a1;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 13px;
-      margin-right: 6px;
-    }
-    .field-group input {
-      padding: 12px 14px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
-      font-size: 18px;
-      transition: border-color 0.2s;
-    }
-    .field-group input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-
-    #resultBox {
-      display: none;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* สีปิงปองจราจรชีวิต 7 สี */
-    .z-white { background: #ffffff; border: 2px solid #cbd5e1; color: #1e293b; }
+    #resultBox { display: none; padding: 20px; border-radius: 12px; margin-top: 20px; }
+    
+    /* สไตล์สีปิงปอง 7 สี */
+    .z-white  { background: #ffffff; border: 2px solid #cbd5e1; color: #1e293b; }
     .z-lgreen { background: #f0fdf4; border: 2px solid #86efac; color: #166534; }
+    .z-green  { background: #dcfce7; border: 2px solid #4ade80; color: #14532d; }
     .z-yellow { background: #fefce8; border: 2px solid #fde047; color: #854d0e; }
     .z-orange { background: #fff7ed; border: 2px solid #fdba74; color: #9a3412; }
-    .z-red { background: #fef2f2; border: 2px solid #fca5a5; color: #991b1b; }
-    .z-black { background: #0f172a; border: 2px solid #020617; color: #ffffff; }
+    .z-red    { background: #fef2f2; border: 2px solid #fca5a5; color: #991b1b; }
+    .z-black  { background: #0f172a; border: 2px solid #020617; color: #ffffff; }
 
     #resBadge { font-size: 18px; font-weight: 700; margin: 0 0 8px 0; }
     #resVal { font-size: 16px; margin-bottom: 12px; font-weight: 600; }
-    
-    .advice-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .advice-item {
-      background: rgba(255, 255, 255, 0.7);
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .z-black .advice-item {
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-    }
-
-    .history-section {
-      margin-top: 24px;
-      border-top: 2px dashed #e2e8f0;
-      padding-top: 16px;
-    }
-    .history-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .history-card {
-      padding: 12px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      font-size: 13.5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .guide-card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .guide-card h3 { margin: 0 0 10px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    .guide-card p, .guide-card li { font-size: 13.5px; color: #334155; line-height: 1.6; }
-    .guide-card ul { margin: 6px 0; padding-left: 18px; }
-    .badge-icon {
-      display: inline-block; width: 28px; height: 28px; background: #dbeafe; color: #1e40af;
-      border-radius: 50%; text-align: center; line-height: 28px; font-size: 14px; font-weight: bold;
-    }
+    .advice-container { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .advice-item { background: rgba(255, 255, 255, 0.7); padding: 10px 12px; border-radius: 8px; font-size: 14px; }
+    .z-black .advice-item { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    
     <div class="app-header">
       <h1>🏥 ระบบประเมินสุขภาพ ปิงปอง 7 สี</h1>
-      <p>จำประวัติอัตโนมัติ พร้อมปุ่มกดฟังเสียงอ่านผลภาษาไทย</p>
+      <p>คัดกรองความดันโลหิตและระดับน้ำตาล พร้อมบันทึกผลออนไลน์</p>
     </div>
 
-    <!-- หน้า 1: เมนูหลัก -->
+    <!-- หน้าเมนูหลัก -->
     <div id="screenMenu" class="card">
       <h2 style="margin-top:0; font-size: 18px; text-align: center;">เลือกรายการที่ต้องการประเมิน</h2>
       <div class="menu-grid">
         <button class="btn" onclick="openMode('BP')">🩸 ตรวจความดันโลหิต</button>
         <button class="btn" onclick="openMode('SUGAR')">🍬 ตรวจระดับน้ำตาล</button>
       </div>
-      <div style="margin-top: 12px;">
-        <button class="btn btn-info" onclick="openGuide()">📖 คู่มือการดูแลตนเอง (หลัก 3อ. 3ลด.)</button>
-      </div>
-
-      <div class="history-section">
-        <div class="history-title">
-          <span>📜 ประวัติการประเมินย้อนหลัง</span>
-          <button onclick="clearHistory()" style="background:none; border:none; color:#ef4444; font-size:12px; cursor:pointer;">[ลบประวัติทั้งหมด]</button>
-        </div>
-        <div id="historyList">
-          <p style="color: var(--text-muted); font-size: 13px; text-align: center;">ยังไม่มีข้อมูลบันทึกในเครื่องนี้</p>
-        </div>
-      </div>
     </div>
 
-    <!-- หน้า 2: ฟอร์มประเมินผล -->
+    <!-- หน้าฟอร์มประเมิน -->
     <div id="screenApp" class="card" style="display: none;">
       <button class="btn btn-sec" onclick="goHome()" style="width: auto; padding: 6px 14px; margin-bottom: 16px;">← เมนูหลัก</button>
       <h2 id="modeTitle" style="margin: 0 0 4px 0; font-size: 20px;">—</h2>
       <p id="modeSubtitle" style="color: var(--text-muted); margin: 0 0 20px 0; font-size: 14px;">—</p>
 
+      <!-- ส่วนติดตามผลสำหรับแอดมิน -->
+      <div style="background: #eff6ff; padding: 12px; border-radius: 10px; margin-bottom: 16px; border: 1px solid #bfdbfe;">
+        <strong style="color: #1e40af; font-size: 14px;">📌 ข้อมูลติดตามผล (สำหรับแอดมิน/ผู้ดูแล)</strong>
+        <div style="display: flex; gap: 10px; margin-top: 8px;">
+          <input type="text" id="patientId" placeholder="รหัสคนไข้ (เช่น P001)" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;">
+          <input type="text" id="adminId" placeholder="รหัสผู้ดูแล (ไม่บังคับ)" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1;">
+        </div>
+      </div>
+
       <div id="inputForm" class="form-stack"></div>
 
       <div style="display: flex; gap: 10px; margin-top: 16px;">
-        <button class="btn" style="flex: 2;" onclick="submitEvaluation()">ประเมินผลสุขภาพ</button>
+        <button class="btn" style="flex: 2;" onclick="submitEvaluation()">ประเมินและบันทึกผล</button>
         <button class="btn btn-sec" style="flex: 1;" onclick="clearInputs()">ล้างค่า</button>
       </div>
 
-      <!-- ผลการประเมิน -->
       <div id="resultBox">
         <div id="resBadge">—</div>
         <div id="resVal"></div>
-        
-        <button class="btn btn-speaker" onclick="playCurrentVoice()">
-          🔊 กดฟังเสียงบอกระดับสุขภาพ
-        </button>
-
+        <button class="btn btn-speaker" onclick="playCurrentVoice()">🔊 กดฟังเสียงบอกระดับสุขภาพ</button>
         <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 16px 0 12px 0;">
-        <strong style="font-size: 15px;">💡 ข้อแนะนำในการดูแลตนเอง (หลัก 3อ.):</strong>
+        <strong style="font-size: 15px;">💡 ข้อแนะนำตามหลัก 3อ. 3ลด:</strong>
         <div id="resAdvice" class="advice-container"></div>
       </div>
     </div>
-
-    <!-- หน้า 3: รายละเอียดคู่มือ 3อ. 3ลด. -->
-    <div id="screenGuide" class="card" style="display: none;">
-      <button class="btn btn-sec" onclick="goHome()" style="width: auto; padding: 6px 14px; margin-bottom: 16px;">← เมนูหลัก</button>
-      <h2 style="margin-top:0; color: #0d9488; font-size: 22px;">📖 คู่มือดูแลสุขภาพ หลัก 3อ. 3ลด.</h2>
-      <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">แนวทางปฏิบัติตนเพื่อป้องกันโรคความดันโลหิตสูงและเบาหวาน</p>
-
-      <div class="guide-card">
-        <h3><span class="badge-icon">1</span> อ. อาหาร (Nutrition)</h3>
-        <ul>
-          <li><strong>หลัก 2:1:1:</strong> ผักใบเขียว 2 ส่วน : แป้งไม่ขัดขาว 1 ส่วน : เนื้อสัตว์ไขมันต่ำ 1 ส่วน</li>
-          <li><strong>คุมหวาน:</strong> น้ำตาลไม่เกิน 6 ช้อนชา/วัน เลี่ยงน้ำหวาน น้ำอัดลม</li>
-          <li><strong>คุมเค็ม:</strong> โซเดียมไม่เกิน 2,000 มก./วัน เลี่ยงน้ำซุป ผงชูรส อาหารหมักดอง</li>
-          <li><strong>คุมมัน:</strong> น้ำมันไม่เกิน 6 ช้อนชา/วัน เลี่ยงของทอด อาหารใส่กะทิ</li>
-        </ul>
-      </div>
-
-      <div class="guide-card">
-        <h3><span class="badge-icon">2</span> อ. ออกกำลังกาย (Exercise)</h3>
-        <ul>
-          <li><strong>ความถี่:</strong> ออกกำลังกายปานกลาง เช่น เดินเร็ว ปั่นจักรยาน อย่างน้อย 150 นาที/สัปดาห์ (วันละ 30 นาที 5 วัน)</li>
-          <li><strong>ข้อควรระวัง:</strong> ผู้มีความดันสูงเลี่ยงการยกของหนักมากๆ ผู้เป็นเบาหวานเลี่ยงออกกำลังกายช่วงท้องว่าง</li>
-        </ul>
-      </div>
-
-      <div class="guide-card">
-        <h3><span class="badge-icon">3</span> อ. อารมณ์ (Mental Health)</h3>
-        <ul>
-          <li><strong>คลายเครียด:</strong> ความเครียดทำให้ความดันและน้ำตาลพุ่งสูง ควรผ่อนคลาย ทำสมาธิวันละ 10-15 นาที</li>
-          <li><strong>การนอนหลับ:</strong> นอนหลับพักผ่อนให้เพียงพอ 7–8 ชั่วโมงต่อวัน เข้านอนก่อน 22.00 น.</li>
-        </ul>
-      </div>
-
-      <div class="guide-card" style="background: #fef2f2; border-color: #fca5a5;">
-        <h3 style="color: #991b1b;">⚠️ เสริมด้วยหลัก 3ลด (ลดภาวะแทรกซ้อน)</h3>
-        <ul style="color: #7f1d1d;">
-          <li><strong>1. ลดงดสูบบุหรี่:</strong> ป้องกันหลอดเลือดเสื่อม ตีบ ตัน</li>
-          <li><strong>2. ลดงดแอลกอฮอล์:</strong> ป้องกันความดันพุ่งสูงและทำลายตับ</li>
-          <li><strong>3. ลดรอบเอว/น้ำหนัก:</strong> คุมรอบเอวชายไม่เกิน 90 ซม. / หญิงไม่เกิน 80 ซม.</li>
-        </ul>
-      </div>
-    </div>
-
   </div>
 
   <script>
+    // ⚠️ นำ URL จาก Google Apps Script มาวางแทนที่ข้อความข้างล่างนี้
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyhdH5gl_EoR6GHP0MPFuyypElwqR8IyQMcvap94y1OjG-LX7Sp7ve9cisCHJJ4cfVH/exec";
+
     let currentMode = '';
     let lastVoiceText = '';
-
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.onvoiceschanged = function() {
-        window.speechSynthesis.getVoices();
-      };
-    }
-
-    window.onload = function() {
-      renderHistory();
-    };
 
     function openMode(mode) {
       currentMode = mode;
       document.getElementById('screenMenu').style.display = 'none';
-      document.getElementById('screenGuide').style.display = 'none';
       document.getElementById('screenApp').style.display = 'block';
       document.getElementById('resultBox').style.display = 'none';
 
       const form = document.getElementById('inputForm');
-
       if (mode === 'BP') {
         document.getElementById('modeTitle').innerText = 'ตรวจความดันโลหิต';
-        document.getElementById('modeSubtitle').innerText = 'กรอกตัวเลขตามลำดับบรรทัดที่ปรากฏบนหน้าจอเครื่องวัดความดัน';
-
+        document.getElementById('modeSubtitle').innerText = 'ระบุค่าความดันโลหิตตัวบนและตัวล่าง (mmHg)';
         form.innerHTML = `
-          <div class="field-group">
-            <label for="sysVal"><span class="line-num">บรรทัดที่ 1</span> ค่าตัวบน (SYS / ตัวเลขบนสุด)</label>
-            <input type="number" id="sysVal" placeholder="ตัวอย่าง: 120">
-          </div>
-          <div class="field-group">
-            <label for="diaVal"><span class="line-num">บรรทัดที่ 2</span> ค่าตัวล่าง (DIA / ตัวเลขตรงกลาง)</label>
-            <input type="number" id="diaVal" placeholder="ตัวอย่าง: 80">
-          </div>
-          <div class="field-group">
-            <label for="pulseVal"><span class="line-num">บรรทัดที่ 3</span> ชีพจร (PULSE / ตัวเลขล่างสุด)</label>
-            <input type="number" id="pulseVal" placeholder="ตัวอย่าง: 72">
-          </div>
+          <div class="field-group"><label>ค่าตัวบน (SYS)</label><input type="number" id="sysVal" placeholder="เช่น 120"></div>
+          <div class="field-group"><label>ค่าตัวล่าง (DIA)</label><input type="number" id="diaVal" placeholder="เช่น 80"></div>
         `;
       } else {
-        document.getElementById('modeTitle').innerText = 'ตรวจระดับน้ำตาล';
-        document.getElementById('modeSubtitle').innerText = 'กรอกระดับน้ำตาลในเลือดหลังอดอาหาร (FBS)';
-
+        document.getElementById('modeTitle').innerText = 'ตรวจระดับน้ำตาลในเลือด';
+        document.getElementById('modeSubtitle').innerText = 'ระบุระดับน้ำตาลหลังงดอาหาร (mg/dL)';
         form.innerHTML = `
-          <div class="field-group">
-            <label for="fbsVal"><span class="line-num">บรรทัดที่ 1</span> ระดับน้ำตาลในเลือด (FBS mg/dL)</label>
-            <input type="number" id="fbsVal" placeholder="ตัวอย่าง: 95">
-          </div>
+          <div class="field-group"><label>ระดับน้ำตาล (FBS)</label><input type="number" id="fbsVal" placeholder="เช่น 95"></div>
         `;
       }
     }
 
-    function openGuide() {
-      document.getElementById('screenMenu').style.display = 'none';
-      document.getElementById('screenApp').style.display = 'none';
-      document.getElementById('screenGuide').style.display = 'block';
-    }
-
     function goHome() {
       document.getElementById('screenApp').style.display = 'none';
-      document.getElementById('screenGuide').style.display = 'none';
       document.getElementById('screenMenu').style.display = 'block';
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       clearInputs();
-      renderHistory();
     }
 
     function clearInputs() {
-      ['sysVal', 'diaVal', 'pulseVal', 'fbsVal'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = '';
-      });
+      ['sysVal', 'diaVal', 'fbsVal'].forEach(id => { if(document.getElementById(id)) document.getElementById(id).value = ''; });
       document.getElementById('resultBox').style.display = 'none';
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     function submitEvaluation() {
+      const patientId = document.getElementById('patientId').value.trim();
+      const adminId = document.getElementById('adminId').value.trim();
+
+      if (!patientId) {
+        alert('กรุณากรอก "รหัสคนไข้" เพื่อเก็บบันทึกประวัติการติดตามผล');
+        return;
+      }
+
       let result = null;
       let textVal = '';
       let typeName = '';
@@ -419,43 +162,22 @@
       if (currentMode === 'BP') {
         const sys = parseInt(document.getElementById('sysVal')?.value) || 0;
         const dia = parseInt(document.getElementById('diaVal')?.value) || 0;
-        const pulse = parseInt(document.getElementById('pulseVal')?.value) || 0;
-
-        if (!sys || !dia) {
-          alert('กรุณากรอกค่าความดันบรรทัดที่ 1 (SYS) และบรรทัดที่ 2 (DIA)');
-          return;
-        }
-
-        if (sys < 60 || sys > 260 || dia < 30 || dia > 160 || sys <= dia) {
-          alert('ค่าความดันไม่สมเหตุสมผล กรุณาตรวจสอบตัวเลขอีกครั้ง');
-          return;
-        }
-
+        if (!sys || !dia) { alert('กรุณากรอกค่าความดันโลหิตให้ครบถ้วน'); return; }
         result = evalBP(sys, dia);
-        textVal = `${sys}/${dia} mmHg` + (pulse ? ` (${pulse} bpm)` : '');
-        typeName = 'BP';
+        textVal = `${sys}/${dia} mmHg`;
+        typeName = 'ความดันโลหิต';
       } else {
         const fbs = parseInt(document.getElementById('fbsVal')?.value) || 0;
-
-        if (!fbs) {
-          alert('กรุณากรอกระดับน้ำตาล');
-          return;
-        }
-
-        if (fbs < 30 || fbs > 700) {
-          alert('ค่าระดับน้ำตาลอยู่นอกช่วงที่ระบบรองรับ');
-          return;
-        }
-
+        if (!fbs) { alert('กรุณากรอกระดับน้ำตาล'); return; }
         result = evalSugar(fbs);
         textVal = `${fbs} mg/dL`;
-        typeName = 'SUGAR';
+        typeName = 'น้ำตาลในเลือด';
       }
 
+      // แสดงผลบนหน้าจอ
       const box = document.getElementById('resultBox');
       box.className = result.cssClass;
       box.style.display = 'block';
-
       document.getElementById('resBadge').innerText = result.title;
       document.getElementById('resVal').innerText = `ค่าที่ตรวจได้: ${textVal}`;
 
@@ -468,220 +190,136 @@
         advBox.appendChild(div);
       });
 
-      // ประโยคภาษาไทยธรรมชาติ ออกเสียงชัดเจนที่สุด
-      const cleanTitle = result.title.replace(/🔴|🟠|🟡|🟢|⚪|⚫/g, '').trim();
-      const typeText = (typeName === 'BP') ? 'ความดันโลหิต' : 'ระดับน้ำตาลในเลือด';
-      lastVoiceText = `ผลการตรวจ ${typeText} ของท่าน อยู่ในระดับ ${cleanTitle}`;
-      
+      // ตั้งค่าเสียงพูด (ความเร็ว 0.85)
+      lastVoiceText = `ผลการตรวจ${typeName} อยู่ในระดับ ${result.title.replace(/⚪|🟢|🟡|🟠|🔴|⚫/g, '')}`;
       speakText(lastVoiceText);
 
-      saveHistory({
-        type: typeName === 'BP' ? 'ความดัน' : 'น้ำตาล',
-        title: result.title,
-        valText: textVal,
-        cssClass: result.cssClass,
-        date: new Date().toLocaleString('th-TH', { dateStyle: 'short', timeStyle: 'short' })
-      });
+      // บันทึกไป Google Sheets
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "ใส่_URL_GOOGLE_SCRIPT_ตรงนี้") {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            patientId: patientId,
+            adminId: adminId || 'ทั่วไป',
+            type: typeName,
+            valText: textVal,
+            title: result.title
+          })
+        }).then(() => {
+          console.log('ส่งข้อมูลบันทึกลง Google Sheets เรียบร้อย');
+        });
+      }
     }
 
-    /* ฟังก์ชันออกเสียงภาษาไทยธรรมชาติ คมชัด ไม่รัว ไม่ติดขัด */
+    // ฟังก์ชันเสียงพูดอัตราเร็ว 0.85 สำหรับผู้สูงอายุ
     function speakText(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'th-TH';
-        utterance.rate = 0.85; // ความเร็วมาตรฐานสำหรับภาษาไทย ชัดเจน เป็นธรรมชาติ
-        utterance.pitch = 1.0;
-
-        const voices = window.speechSynthesis.getVoices();
-        const thVoice = voices.find(v => (v.lang === 'th-TH' || v.lang.includes('th')) && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Kanya') || v.name.includes('Premium'))) 
-                     || voices.find(v => v.lang === 'th-TH' || v.lang.includes('th'));
-        
-        if (thVoice) {
-          utterance.voice = thVoice;
-        }
-
+        utterance.rate = 0.85; 
         window.speechSynthesis.speak(utterance);
-      } else {
-        alert('อุปกรณ์นี้ไม่รองรับระบบออกเสียง');
       }
     }
 
-    function playCurrentVoice() {
-      if (lastVoiceText) {
-        speakText(lastVoiceText);
-      }
-    }
+    function playCurrentVoice() { if (lastVoiceText) speakText(lastVoiceText); }
 
-    function saveHistory(item) {
-      let history = JSON.parse(localStorage.getItem('health_history_7colors') || '[]');
-      history.unshift(item);
-      if (history.length > 5) history = history.slice(0, 5);
-      localStorage.setItem('health_history_7colors', JSON.stringify(history));
-    }
-
-    function renderHistory() {
-      const listEl = document.getElementById('historyList');
-      let history = JSON.parse(localStorage.getItem('health_history_7colors') || '[]');
-
-      if (history.length === 0) {
-        listEl.innerHTML = '<p style="color: var(--text-muted); font-size: 13px; text-align: center;">ยังไม่มีข้อมูลบันทึกในเครื่องนี้</p>';
-        return;
-      }
-
-      let html = '';
-      history.forEach(h => {
-        html += `
-          <div class="history-card ${h.cssClass}">
-            <div>
-              <strong>[${h.type}] ${h.valText}</strong><br>
-              <small>${h.title}</small>
-            </div>
-            <div style="font-size: 11px; opacity: 0.8;">${h.date}</div>
-          </div>
-        `;
-      });
-      listEl.innerHTML = html;
-    }
-
-    function clearHistory() {
-      if (confirm('คุณต้องการลบประวัติการตรวจทั้งหมดใช่หรือไม่?')) {
-        localStorage.removeItem('health_history_7colors');
-        renderHistory();
-      }
-    }
+    // -------------------------------------------------------------
+    // เกณฑ์ประเมินปิงปอง 7 สี แบบครบถ้วนตามหลักสาสุข
+    // -------------------------------------------------------------
 
     function evalBP(sys, dia) {
-      if (sys >= 200 || dia >= 120) {
-        return {
-          cssClass: 'z-black',
-          title: '⚫ สีดำ : ความดันสูงวิกฤต รุนแรงมาก',
-          advice: [
-            '🚨 <strong>คำเตือนด่วน:</strong> เสี่ยงภาวะเส้นเลือดสมองแตกหรืออัมพฤกษ์!',
-            '🏥 <strong>การปฏิบัติ:</strong> นั่งพักนิ่งๆ ห้ามออกแรง และให้คนใกล้ชิดพาส่งโรงพยาบาลหรือโทร 1669 ทันที'
-          ]
-        };
-      }
       if (sys >= 180 || dia >= 110) {
         return {
-          cssClass: 'z-red',
-          title: '🔴 สีแดง : ความดันสูงวิกฤต',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> งดอาหารเค็ม รสจัด ของหมักดอง และอาหารไขมันสูงเด็ดขาด',
-            '🏃 <strong>ออกกำลังกาย:</strong> งดการออกกำลังกายชั่วคราว นั่งพักผ่อนในที่อากาศถ่ายเทสะดวก',
-            '🧘 <strong>อารมณ์ & ยา:</strong> ทานยาความดันตามแพทย์สั่งทันที ห้ามขาดยา ทำจิตใจให้สงบไม่ตื่นตระหนก'
-          ]
+          cssClass: 'z-black',
+          title: '⚫ สีดำ : ภาวะแทรกซ้อน/วิกฤต',
+          advice: ['🚨 เสี่ยงอันตรายสูง ควรพบแพทย์ทันที', '3อ: อารมณ์ผ่อนคลาย อย่าวิตกกังวล', '3ลด: ลดกิจกรรมหนัก พักผ่อนทันที']
         };
-      }
-      if (sys >= 160 || dia >= 100) {
+      } else if (sys >= 160 || dia >= 100) {
+        return {
+          cssClass: 'z-red',
+          title: '🔴 สีแดง : ความดันสูงระดับ 2 (อันตราย)',
+          advice: ['ควรพบแพทย์เพื่อรับยาและตรวจอย่างสม่ำเสมอ', '3อ: อาหารรสจืด ออกกำลังกายเบาๆ', '3ลด: ลดเค็ม ลดมัน ลดความเครียด']
+        };
+      } else if (sys >= 140 || dia >= 90) {
         return {
           cssClass: 'z-orange',
-          title: '🟠 สีส้ม : ความดันสูงอันตราย',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> ควบคุมโซเดียมเคร่งครัด งดซดน้ำซุป/ซอสปรุงรส เพิ่มผักใบเขียว',
-            '🏃 <strong>ออกกำลังกาย:</strong> ออกกำลังกายเบาๆ เช่น เดินช้าๆ ห้ามยกของหนักหรือเกร็งหน้าท้อง',
-            '🧘 <strong>อารมณ์:</strong> พักผ่อนให้เพียงพอ ทำสมาธิคลายเครียด และไปพบแพทย์ตามนัด'
-          ]
+          title: '🟠 สีส้ม : ความดันสูงระดับ 1 (เสี่ยงสูง)',
+          advice: ['ทานยาตามแพทย์สั่งอย่างเคร่งครัด', '3อ: ออกกำลังกายแอโรบิก 30 นาที/วัน', '3ลด: ลดอาหารเค็มจัด ลดการดื่มสุรา']
         };
-      }
-      if (sys >= 140 || dia >= 90) {
+      } else if (sys >= 130 || dia >= 85) {
         return {
           cssClass: 'z-yellow',
-          title: '🟡 สีเหลือง : ความดันสูงเฝ้าระวัง',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> ลดโซเดียมไม่เกิน 1 ช้อนชา/วัน เลี่ยงแกงกะทิ ของทอด ขนมกรุบกรอบ',
-            '🏃 <strong>ออกกำลังกาย:</strong> เดินเร็วหรือปั่นจักรยานเบาๆ 30 นาที/วัน (5 วัน/สัปดาห์)',
-            '🧘 <strong>อารมณ์:</strong> นอนหลับพักผ่อน 7–8 ชม. เข้านอนก่อน 22.00 น. ตรวจวัดความดันซ้ำสัปดาห์ละครั้ง'
-          ]
+          title: '🟡 สีเหลือง : เสี่ยงความดันสูง (ปานกลาง)',
+          advice: ['ปรับเปลี่ยนพฤติกรรมเพื่อป้องกันโรค', '3อ: กินผักผลไม้สด อารมณ์แจ่มใส', '3ลด: ลดเค็ม ลดหวาน ลดน้ำหนัก']
         };
-      }
-      if (sys >= 120 || dia >= 80) {
+      } else if (sys >= 120 || dia >= 80) {
+        return {
+          cssClass: 'z-green',
+          title: '🟢 สีเขียวเข้ม : ปกติมีเสี่ยง (เฝ้าระวัง)',
+          advice: ['เฝ้าระวังและตรวจความดันเดือนละครั้ง', '3อ: อาหารครบ 5 หมู่ ออกกำลังกายสม่ำเสมอ', '3ลด: ลดการกินจังค์ฟู้ด']
+        };
+      } else if (sys >= 100 || dia >= 60) {
         return {
           cssClass: 'z-lgreen',
-          title: '🟢 สีเขียวอ่อน : กลุ่มเสี่ยงความดันโลหิต',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> ปรับโภชนาการตามจาน 2:1:1 ชิมก่อนปรุง ไม่เติมน้ำปลาเพิ่ม',
-            '🏃 <strong>ออกกำลังกาย:</strong> ออกกำลังกายสะสมสม่ำเสมอ เช่น เดินเร็ว รำมวยจีน อย่างน้อย 150 นาที/สัปดาห์',
-            '🧘 <strong>อารมณ์:</strong> ผ่อนคลายจิตใจ ลดความวิตกกังวล หลีกเลี่ยงบุหรี่และแอลกอฮอล์'
-          ]
+          title: '🟢 สีเขียวอ่อน : ความดันโลหิตปกติ',
+          advice: ['สุขภาพดีเยี่ยม ควบคุมพฤติกรรมเดิมไว้', '3อ: อาหารสุขภาพ ออกกำลังกายสม่ำเสมอ', '3ลด: ลดหวาน มัน เค็ม']
+        };
+      } else {
+        return {
+          cssClass: 'z-white',
+          title: '⚪ สีขาว : กลุ่มปกติ/เสี่ยงต่ำ',
+          advice: ['ตรวจสุขภาพประจำปีอย่างสม่ำเสมอ', '3อ: อารมณ์แจ่มใส อาหารดี มีออกกำลังกาย', '3ลด: ลดปัจจัยเสี่ยงด้านสุขภาพ']
         };
       }
-      return {
-        cssClass: 'z-white',
-        title: '⚪ สีขาว : ความดันโลหิตปกติ',
-        advice: [
-          '🥦 <strong>อาหาร:</strong> รักษารูปแบบอาหารเพื่อสุขภาพ ทานผักผลไม้หวานน้อยเป็นประจำ',
-          '🏃 <strong>ออกกำลังกาย:</strong> เคลื่อนไหวร่างกายสม่ำเสมอ ออกกำลังกายต่อเนื่องเป็นประจำ',
-          '🧘 <strong>อารมณ์:</strong> สุขภาพดีเยี่ยม! ทำจิตใจให้แจ่มใส และตรวจเช็กความดันประจำปี'
-        ]
-      };
     }
 
     function evalSugar(fbs) {
-      if (fbs >= 300) {
-        return {
-          cssClass: 'z-black',
-          title: '⚫ สีดำ : ระดับน้ำตาลสูงวิกฤต รุนแรงมาก',
-          advice: [
-            '🚨 <strong>คำเตือนด่วน:</strong> เสี่ยงภาวะเลือดเป็นกรด ช็อก หรือหมดสติ!',
-            '🏥 <strong>การปฏิบัติ:</strong> จิบน้ำสะอาดเบาๆ ห้ามกินของหวานเพิ่ม และรีบนำส่งโรงพยาบาลด่วนที่สุด'
-          ]
-        };
-      }
       if (fbs >= 183) {
         return {
-          cssClass: 'z-red',
-          title: '🔴 สีแดง : ระดับน้ำตาลสูงวิกฤต',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> งดน้ำหวาน น้ำอัดลม ผลไม้รสหวานจัด และแป้งขัดขาวเด็ดขาด',
-            '🏃 <strong>ออกกำลังกาย:</strong> นั่งพักผ่อน งดออกกำลังกายหนักเพื่อป้องกันภาวะแทรกซ้อน',
-            '🧘 <strong>อารมณ์ & ยา:</strong> ทานยาหรือฉีดอินซูลินตามแพทย์สั่งอย่างเคร่งครัด สังเกตอาการหน้ามืด/จุกแน่น'
-          ]
+          cssClass: 'z-black',
+          title: '⚫ สีดำ : ระดับน้ำตาลสูงวิกฤต',
+          advice: ['🚨 เสี่ยงภาวะแทรกซ้อนสูง ควรพบแพทย์ด่วน', '3อ: อาหารงดแป้งขัดขาวและของหวานเด็ดขาด', '3ลด: ลดหวานให้เป็นศูนย์ พักผ่อนให้พอ']
         };
-      }
-      if (fbs >= 155) {
+      } else if (fbs >= 155) {
+        return {
+          cssClass: 'z-red',
+          title: '🔴 สีแดง : ระดับน้ำตาลสูงอันตราย',
+          advice: ['ต้องพบแพทย์เพื่อปรับยาและคุมอาหาร', '3อ: ออกกำลังกายเพื่อช่วยดึงน้ำตาลไปใช้', '3ลด: ลดน้ำหวาน ขนมหวาน ข้าวแป้งเยอะ']
+        };
+      } else if (fbs >= 126) {
         return {
           cssClass: 'z-orange',
-          title: '🟠 สีส้ม : ระดับน้ำตาลสูงอันตราย',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> คุมแป้งและน้ำตาลอย่างเข้มงวด เปลี่ยนมาทานข้าวกล้อง และผักต้ม',
-            '🏃 <strong>ออกกำลังกาย:</strong> เดินออกกำลังกายเบาๆ หลังอาหาร 10-15 นาที ห้ามออกกำลังกายตอนท้องว่าง',
-            '🧘 <strong>อารมณ์:</strong> นอนหลับพักผ่อนให้เต็มที่ หลีกเลี่ยงความเครียดสะสม และพบแพทย์ตามนัด'
-          ]
+          title: '🟠 สีส้ม : เป็นเบาหวาน (เสี่ยงสูง)',
+          advice: ['ควบคุมอาหารและรับยาอย่างต่อเนื่อง', '3อ: เน้นผักใบเขียว อาหารกากใยสูง', '3ลด: ลดของหวาน ลดความเครียด']
         };
-      }
-      if (fbs >= 126) {
+      } else if (fbs >= 111) {
         return {
           cssClass: 'z-yellow',
-          title: '🟡 สีเหลือง : ระดับน้ำตาลสูงเฝ้าระวัง',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> ทานอาหารตามจาน 2:1:1 เลี่ยงขนมหวาน ชาหวาน กาแฟใส่นมข้น',
-            '🏃 <strong>ออกกำลังกาย:</strong> ออกกำลังกายปานกลาง เช่น เดินเร็ว แอโรบิก 30 นาที/วัน (5 วัน/สัปดาห์)',
-            '🧘 <strong>อารมณ์:</strong> ฝึกการหายใจคลายเครียด ควบคุมน้ำหนักให้อยู่ในเกณฑ์มาตรฐาน'
-          ]
+          title: '🟡 สีเหลือง : เสี่ยงเบาหวาน (ปานกลาง)',
+          advice: ['ปรับพฤติกรรมก่อนกลายเป็นเบาหวาน', '3อ: กินอาหารดัชนีน้ำตาลต่ำ ออกกำลังกาย', '3ลด: ลดน้ำตาล ลดขนมจุบจิบ']
         };
-      }
-      if (fbs >= 100) {
+      } else if (fbs >= 100) {
+        return {
+          cssClass: 'z-green',
+          title: '🟢 สีเขียวเข้ม : เริ่มมีเสี่ยงน้ำตาลสูง',
+          advice: ['เฝ้าระวังการกินของหวานและแป้ง', '3อ: อาหารธรรมชาติ ไม่ปรุงแต่งเยอะ', '3ลด: ลดน้ำผลไม้ปรุงแต่ง ลดเครื่องดื่มชูกำลัง']
+        };
+      } else if (fbs >= 70) {
         return {
           cssClass: 'z-lgreen',
-          title: '🟢 สีเขียวอ่อน : กลุ่มเสี่ยงเบาหวาน',
-          advice: [
-            '🥦 <strong>อาหาร:</strong> ลดการทานของหวาน เลี่ยงน้ำผลไม้บรรจุกล่อง ทานผักใบเขียวเพิ่มขึ้น',
-            '🏃 <strong>ออกกำลังกาย:</strong> เพิ่มการขยับร่างกาย ขี่จักรยาน เดินสะสมก้าวให้ได้ 8,000 ก้าว/วัน',
-            '🧘 <strong>อารมณ์:</strong> ทำจิตใจให้สดชื่น พักผ่อนเพียงพอ ช่วยให้ฮอร์โมนเผาผลาญทำงานได้ดี'
-          ]
+          title: '🟢 สีเขียวอ่อน : ระดับน้ำตาลปกติดี',
+          advice: ['สุขภาพดีมาก คุมพฤติกรรมนี้ไว้', '3อ: กินอาหารสมดุล อารมณ์ผ่อนคลาย', '3ลด: ลดหวาน มัน เค็ม']
+        };
+      } else {
+        return {
+          cssClass: 'z-white',
+          title: '⚪ สีขาว : ระดับน้ำตาลปกติ/เสี่ยงต่ำ',
+          advice: ['ตรวจสุขภาพและระดับน้ำตาลปีละครั้ง', '3อ: ทานอาหารที่มีประโยชน์สม่ำเสมอ', '3ลด: ลดปัจจัยเสี่ยงต่อสุขภาพ']
         };
       }
-      return {
-        cssClass: 'z-white',
-        title: '⚪ สีขาว : ระดับน้ำตาลปกติ',
-        advice: [
-          '🥦 <strong>อาหาร:</strong> คุมน้ำตาลไม่เกิน 6 ช้อนชา/วัน ทานอาหารครบ 5 หมู่',
-          '🏃 <strong>ออกกำลังกาย:</strong> ออกกำลังกายเพื่อสุขภาพสม่ำเสมอ 150 นาที/สัปดาห์',
-          '🧘 <strong>อารมณ์:</strong> สุขภาพดีมาก! รักษาสุขภาพตามหลัก 3อ. และตรวจเช็กร่างกายประจำปี'
-        ]
-      };
     }
   </script>
 </body>
