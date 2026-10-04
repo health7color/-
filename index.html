@@ -101,6 +101,7 @@
         <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 16px 0 12px 0;">
         <strong style="font-size: 15px;">💡 ข้อแนะนำตามหลัก 3อ. 3ลด:</strong>
         <div id="resAdvice" class="advice-container"></div>
+        <button class="btn btn-speaker" onclick="speak3OAdvice()" style="margin-top: 10px; background-color: #059669;">🔊 กดฟังคำแนะนำหลัก 3อ.</button>
       </div>
     </div>
   </div>
@@ -321,6 +322,28 @@
         };
       }
     }
+    function speak3OAdvice() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+
+    let adviceElement = document.getElementById('resAdvice');
+    let adviceText = adviceElement ? adviceElement.innerText : '';
+
+    if (!adviceText.trim()) {
+      alert('ไม่พบข้อความคำแนะนำในการอ่าน');
+      return;
+    }
+
+    let textToSpeak = 'คำแนะนำตามหลัก 3 อ. ' + adviceText;
+    let utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = 'th-TH';
+    utterance.rate = 0.9;
+
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert('ขออภัย เบราว์เซอร์นี้ไม่รองรับระบบอ่านออกเสียง');
+  }
+}
   </script>
 </body>
 </html>
