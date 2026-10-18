@@ -322,27 +322,65 @@
         };
       }
     }
-    function speak3OAdvice() {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
+function playCurrentVoice() {
+    let resValText = document.getElementById('resVal') ? document.getElementById('resVal').innerText : '';
+    if (!resValText.trim()) {
+        alert('ไม่พบข้อความระดับสุขภาพในการอ่าน');
+        return;
+    }
+    speakAdvice(resValText);
+}
 
+function speak3OAdvice() {
     let adviceElement = document.getElementById('resAdvice');
     let adviceText = adviceElement ? adviceElement.innerText : '';
-
     if (!adviceText.trim()) {
-      alert('ไม่พบข้อความคำแนะนำในการอ่าน');
-      return;
+        alert('ไม่พบข้อความคำแนะนำในการอ่าน');
+        return;
     }
+    speakAdvice('คำแนะนำตามหลัก 3 อ. ' + adviceText);
+}
 
-    let textToSpeak = 'คำแนะนำตามหลัก 3 อ. ' + adviceText;
-    let utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = 'th-TH';
-    utterance.rate = 0.9;
+function speakAdvice(text) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // หยุดเสียงเดิมก่อน
 
-    window.speechSynthesis.speak(utterance);
-  } else {
-    alert('ขออภัย เบราว์เซอร์นี้ไม่รองรับระบบอ่านออกเสียง');
-  }
+        // ปรับแต่งข้อความให้อ่านถูกต้อง ชัดถ้อยชัดคำ และเว้นจังหวะธรรมชาติ
+        let cleanedText = text
+            .replace(/3\s*อ\./g, "สาม ออ")
+            .replace(/3\s*อ/g, "สาม ออ")
+            .replace(/3อ/g, "สาม ออ")
+            .replace(/อาหาร/g, " อาหาร , ")
+            .replace(/อารมณ์/g, " อารมณ์ , ")
+            .replace(/ออกกำลังกาย/g, " ออกกำลังกาย , ")
+            .replace(/\//g, " ต่อ ")
+            .replace(/:/g, " คือ ");
+
+        let utterance = new SpeechSynthesisUtterance(cleanedText);
+        utterance.lang = 'th-TH';
+        utterance.rate = 0.88; // ชะลอความเร็วลงนิดหน่อยให้อ่านชัดขึ้น
+        utterance.pitch = 1.0;
+
+        // ดึงเสียงภาษาไทยคุณภาพสูงในเครื่อง
+        let voices = window.speechSynthesis.getVoices();
+        let thaiVoice = voices.find(v => 
+            v.lang.startsWith('th') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Premium'))
+        ) || voices.find(v => v.lang.startsWith('th'));
+
+        if (thaiVoice) {
+            utterance.voice = thaiVoice;
+        }
+
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert('ขออภัย เบราว์เซอร์นี้ไม่รองรับระบบอ่านออกเสียง');
+    }
+}
+
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
 }
   </script>
 </body>
