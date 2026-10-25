@@ -9,6 +9,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    /* ปรับตัวหนังสือ "ทั้งหมดทุกจุด" บนหน้าเว็บให้ใหญ่ชัดเจนสำหรับผู้สูงอายุ */
+* {
+    font-size: 20px !important;      /* ขยายขนาดตัวหนังสือทุกชนิดเป็น 20px */
+    line-height: 1.6 !important;     /* เพิ่มระยะห่างระหว่างบรรทัดให้อ่านง่าย */
+}
+
+/* หัวข้อใหญ่ ขยายให้โดดเด่นยิ่งขึ้น */
+h1, h2, h3, header, .app-header {
+    font-size: 28px !important;
+    font-weight: bold !important;
+}
+
+/* ปุ่มกดและช่องกรอกข้อมูล ขยายขนาดและเพิ่มความหนาตัวอักษร */
+button, input, select, label, .btn {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    padding: 14px 18px !important;
+}
+
+/* ข้อความแสดงผลสุขภาพและคำแนะนำ 3อ. ปรับให้ตัวใหญ่พิเศษ */
+#resVal, #resAdvice {
+    font-size: 24px !important;
+    line-height: 1.7 !important;
+    font-weight: bold !important;
+}
     :root {
       --primary-color: #2563eb;
       --primary-hover: #1d4ed8;
