@@ -9,6 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    /* ดันช่องกรอกรหัสผู้ดูแลลงมาอยู่ใต้ช่องรหัสคนไข้เป็นแนวตั้ง */
+div[style*="display: flex"] {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+}
+
+/* บังคับช่องกรอกข้อมูลให้ขยายเต็ม 100% เพื่อตัดขึ้นบรรทัดใหม่ */
+div[style*="display: flex"] > *:not(button) {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+}
+
+input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
     /* จัดให้ช่องกรอกข้อมูลเรียงต่อกันเป็นแนวตั้ง ไม่ล้นออกข้าง */
 div[style*="display: flex"] {
     flex-wrap: wrap !important;
