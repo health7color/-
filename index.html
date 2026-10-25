@@ -9,6 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    /* จัดให้ช่องกรอกข้อมูลเรียงต่อกันเป็นแนวตั้ง ไม่ล้นออกข้าง */
+div[style*="display: flex"] {
+    flex-wrap: wrap !important;
+}
+
+input {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
     /* ปรับตัวหนังสือ "ทั้งหมดทุกจุด" บนหน้าเว็บให้ใหญ่ชัดเจนสำหรับผู้สูงอายุ */
 * {
     font-size: 20px !important;      /* ขยายขนาดตัวหนังสือทุกชนิดเป็น 20px */
